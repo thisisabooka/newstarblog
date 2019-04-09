@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>码农之家后台管理系统</title>
+
+    <link th:href="@{/system/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/system/font-awesome/css/font-awesome.css}" href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link th:href="@{/system/css/plugins/toastr/toastr.min.css}" href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link th:href="@{/system/js/plugins/gritter/jquery.gritter.css}" href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link th:href="@{/system/css/animate.css}" href="css/animate.css" rel="stylesheet">
+    <link th:href="@{/system/css/style.css}" href="css/style.css" rel="stylesheet">
+
+    <!--富文本编辑器KindEditor-->
+    <script type="text/javascript" th:src="@{/kindeditor-4.1.10/kindeditor.js}"></script>
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+            K.create('#content', {
+                uploadJson:'kindeditor-4.1.10/jsp/upload_json.jsp',
+                fileManagerJson:'kindeditor-4.1.10/jsp/file_manager_json.jsp',
+                allowFileManager:true
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+
+    <!--侧边栏sidebar-->
+    <div th:replace="~{common/bar :: sidebar}"></div>
+
+
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+
+
+        <!--顶部栏topbar-->
+        <div th:replace="common/bar::#topbar"></div>
+
+
+
+        <div class="row  border-bottom white-bg dashboard-header">
+
+            <div class="col-sm-6">
+                <!--<img alt="image" th:src="@{/img/girlfriend.jpg}" src="img/girlfriend.jpg" height="80px" width="200px">-->
+            </div>
+
+            <div class="col-sm-6">
+                <strong>Where there is life, there is hope.</strong>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5 align="center">添加一篇文章</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="">配置选项1</a>
+                                    </li>
+                                    <li><a href="">配置选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <form th:action="@{/article}" method="post" align="center">
+
+                                <div class="form-group" align="center">
+                                    <label>标题</label>
+                                    <input name="title" style="width: 250px" type="text"  class="form-control" placeholder="Title">
+                                </div>
+
+                                <div class="form-group" align="center">
+                                    <label>作者</label>
+                                    <span name="author" style="width: 250px" type="text" class="form-control" placeholder="Author" disabled>
+                                        作者默认为当前账号昵称：[[${session.nickname}]]
+                                    </span>
+                                </div>
+
+                                <div class="form-group" align="center">
+                                    <label>内容</label>
+                                    <textarea id="content" name="content" rows="40" cols="20"></textarea>
+                                </div>
+
+                                <div class="form-group" align="center">
+                                    <label>分类</label>
+                                    <!--提交的是分类的编号-->
+                                    <select class="form-control" name="categoryType"  style="width: 250px">
+                                        <option  th:value="${category.categoryType}" th:each="category:${categories}" th:text="${category.categoryName}">分类名称</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" align="center">
+                                    <label>标签</label>
+                                    <label class="checkbox-inline" th:each="tag:${tags}">
+                                        <input type="radio" name="tagType" id="inlineCheckbox1" value="option1"
+                                               th:text="${tag.tagName}" th:value="${tag.tagType}">
+                                    </label>
+                                    <p>有且必须有一个标签！</p>
+                                </div>
+
+                                <button type="submit" class="btn btn-success glyphicon glyphicon-bullhorn" align="center">添加</button>
+
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!--底部栏footbar-->
+        <div th:replace="common/bar::#footbar"></div>
+
+
+    </div>
+
+
+
+
+</div>
+
+</body>
+
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js" th:src="@{/system/js/jquery-2.1.1.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/system/js/bootstrap.min.js}"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js" th:src="@{/system/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js" th:src="@{/system/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Flot -->
+<script src="js/plugins/flot/jquery.flot.js" th:src="@{/system/js/plugins/flot/jquery.flot.js}"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js" th:src="@{/system/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js" th:src="@{/system/js/plugins/flot/jquery.flot.spline.js}"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js" th:src="@{/system/js/plugins/flot/jquery.flot.resize.js}"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js" th:src="@{/system/js/plugins/flot/jquery.flot.pie.js}"></script>
+
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js" th:src="@{/system/js/plugins/peity/jquery.peity.min.js}"></script>
+<script src="js/demo/peity-demo.js" th:src="@{/system/js/demo/peity-demo.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js" th:src="@{/system/js/inspinia.js}"></script>
+<script src="js/plugins/pace/pace.min.js" th:src="@{/system/js/plugins/pace/pace.min.js}"></script>
+
+<!-- jQuery UI -->
+<script src="js/plugins/jquery-ui/jquery-ui.min.js" th:src="@{/system/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+
+<!-- GITTER -->
+<script src="js/plugins/gritter/jquery.gritter.min.js" th:src="@{/system/js/plugins/gritter/jquery.gritter.min.js}"></script>
+
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js" th:src="@{/system/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="js/demo/sparkline-demo.js" th:src="@{/system/js/demo/sparkline-demo.js}"></script>
+
+<!-- ChartJS-->
+<script src="js/plugins/chartJs/Chart.min.js" th:src="@{/system/js/plugins/chartJs/Chart.min.js}"></script>
+
+<!-- Toastr -->
+<script src="js/plugins/toastr/toastr.min.js" th:src="@{/system/js/plugins/toastr/toastr.min.js}"></script>
+
+</html>

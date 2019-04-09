@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+    <!--header_bg-->
+    <div class="header_bg" id="home" th:fragment="header_bg"><!-- start header -->
+
+        <div class="container">
+
+            <div class="row header text-center specials">
+
+                <div class="h_logo">
+                    <a href="index.html"><img src="images/logo.png" th:src="@{/website/images/logo.png}" alt="" class="responsive"/></a>
+                </div>
+
+                <nav class="top-nav">
+                    <ul class="top-nav nav_list">
+                        <li><a href="portfolio.html">portfolio</a></li>
+                        <li class="page-scroll"><a href="#about">About</a></li>
+                        <li class="logo page-scroll">
+                            <a title="hexa" href="index.html">
+                                <img src="images/logo.png" th:src="@{/website/images/logo.png}" alt="" class="responsive"/>
+                            </a>
+                        </li>
+                        <li class="page-scroll"><a href="blog.html">blog</a></li>
+                        <li class="page-scroll"><a href="#contact">get in touch</a></li>
+                    </ul>
+                    <a href="#" id="pull">
+                        <img src="images/nav-icon.png" th:src="@{/website/images/nav-icon.png}" title="menu" />
+                    </a>
+                </nav>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="footer1_bg" id="footer1_bg"><!-- start footer1 -->
+
+        <div class="container">
+
+            <div class="row  footer">
+                <div class="copy text-center">
+                    <p class="link"><span>Copyright &copy; 2014.Company name All rights reserved.<a target="_blank" href="http//www.zjf88.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></span></p>
+                    <a href="#home" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"> </span></a>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(function() {
+                    $('a[href*=#]:not([href=#])').click(function() {
+                        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+
+                            var target = $(this.hash);
+                            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                            if (target.length) {
+                                $('html,body').animate({
+                                    scrollTop: target.offset().top
+                                }, 1000);
+                                return false;
+                            }
+                        }
+                    });
+                });
+            </script>
+            <!---- start-smoth-scrolling---->
+
+        </div>
+
+    </div>
+
+
+    <!--最底部版权信息-->
+    <div style="display:none" id="footer_bg">
+
+        <script src='http//v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'>
+
+        </script>
+
+    </div>
+</body>
+</html>

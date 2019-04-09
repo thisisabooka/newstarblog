@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>码神之家后台管理系统</title>
+
+    <link th:href="@{/system/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/system/font-awesome/css/font-awesome.css}" href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link th:href="@{/system/css/plugins/toastr/toastr.min.css}" href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link th:href="@{/system/js/plugins/gritter/jquery.gritter.css}" href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link th:href="@{/system/css/animate.css}" href="css/animate.css" rel="stylesheet">
+    <link th:href="@{/system/css/style.css}" href="css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+    <div id="wrapper">
+
+
+        <!--侧边栏sidebar-->
+        <div th:replace="~{common/bar :: sidebar}"></div>
+
+
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+
+
+            <!--顶部栏topbar-->
+            <div th:replace="common/bar::#topbar"></div>
+
+
+
+            <div class="row  border-bottom white-bg dashboard-header">
+
+                <div class="col-sm-6">
+                    <!--<img alt="image" th:src="@{/img/girlfriend.jpg}" src="img/girlfriend.jpg" height="80px" width="200px">-->
+                </div>
+
+                <div class="col-sm-6">
+                    <strong>Where there is life, there is hope.</strong>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="ibox float-e-margins">
+
+                            <div class="ibox-title">
+                                <h5>[[${role!=null}?'修改':'添加']]添加一个系统角色！</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="" th:href="@{/role}">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="" th:href="@{/role}">config1</a>
+                                        </li>
+                                        <li><a href="" th:href="@{/role}">config2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--这是一个添加/修改二合一页面-->
+                            <div class="ibox-content">
+
+                                <!--需要区分是角色修改还是角色添加；-->
+                                <form th:action="@{/role}" method="post" align="center">
+                                    <!--发送post请求  添加角色数据-->
+                                    <!--发送put请求  修改角色数据-->
+                                    <!--
+                                    1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
+                                    2、页面创建一个post表单
+                                    3、创建一个input项，name="_method";值就是我们指定的请求方式
+                                    -->
+
+                                    <input type="hidden" name="_method" value="put" th:if="${role!=null}"/>
+                                    <input type="hidden" name="id" th:if="${role!=null}" th:value="${role.id}">
+
+
+                                    <div class="form-group" align="center">
+                                        <label>英文名称</label>
+                                        <input name="englishName" type="text" style="width: 300px" class="form-control" placeholder="EnglishName" th:value="${role!=null}?${role.englishName}">
+                                    </div>
+                                    <div class="form-group" align="center">
+                                        <label>中文名称</label>
+                                        <input name="chineseName" type="text" style="width: 300px" class="form-control" placeholder="ChineseName" th:value="${role!=null}?${role.chineseName}">
+                                    </div>
+                                    <div class="form-group" align="center">
+                                        <label>描述</label>
+                                        <textarea class="form-control" style="width: 400px" rows="4" name="description" placeholder="Description"
+                                                  th:text="${role!=null}?${role.description}" th:value="${role!=null}?${role.description}">
+                                            <!--[[${role.description}]]-->
+                                        </textarea>
+                                    </div>
+                                    <div class="form-group" align="center">
+                                        <label>角色编号</label>
+                                        <input name="roleType" type="text" style="width: 300px" class="form-control" placeholder="RoleType（角色编号必须唯一且为整数！）"
+                                               th:value="${role!=null}?${role.roleType}">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success glyphicon glyphicon-bullhorn" th:text="${role!=null}? '修改': '添加' ">添加</button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        <!--底部栏footbar-->
+        <div th:replace="common/bar::#footbar"></div>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+</body>
+
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js" th:src="@{/system/js/jquery-2.1.1.js}"></script>
+<script src="js/bootstrap.min.js" th:src="@{/system/js/bootstrap.min.js}"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js" th:src="@{/system/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js" th:src="@{/system/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Flot -->
+<script src="js/plugins/flot/jquery.flot.js" th:src="@{/system/js/plugins/flot/jquery.flot.js}"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js" th:src="@{/system/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js" th:src="@{/system/js/plugins/flot/jquery.flot.spline.js}"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js" th:src="@{/system/js/plugins/flot/jquery.flot.resize.js}"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js" th:src="@{/system/js/plugins/flot/jquery.flot.pie.js}"></script>
+
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js" th:src="@{/system/js/plugins/peity/jquery.peity.min.js}"></script>
+<script src="js/demo/peity-demo.js" th:src="@{/system/js/demo/peity-demo.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js" th:src="@{/system/js/inspinia.js}"></script>
+<script src="js/plugins/pace/pace.min.js" th:src="@{/system/js/plugins/pace/pace.min.js}"></script>
+
+<!-- jQuery UI -->
+<script src="js/plugins/jquery-ui/jquery-ui.min.js" th:src="@{/system/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+
+<!-- GITTER -->
+<script src="js/plugins/gritter/jquery.gritter.min.js" th:src="@{/system/js/plugins/gritter/jquery.gritter.min.js}"></script>
+
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js" th:src="@{/system/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="js/demo/sparkline-demo.js" th:src="@{/system/js/demo/sparkline-demo.js}"></script>
+
+<!-- ChartJS-->
+<script src="js/plugins/chartJs/Chart.min.js" th:src="@{/system/js/plugins/chartJs/Chart.min.js}"></script>
+
+<!-- Toastr -->
+<script src="js/plugins/toastr/toastr.min.js" th:src="@{/system/js/plugins/toastr/toastr.min.js}"></script>
+
+
+
+</html>

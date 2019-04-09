@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Common!</title>
+    <!--公共页面元素的抽取！-->
+
+</head>
+
+<body>
+
+<!--侧边栏sidebar-->
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="sidebar">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span><img alt="image" class="img-circle" width="50px" height="50px" th:src="@{/bootstrap/image/img001.jpg}"/></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                            <span class="clear"> <span class="block m-t-xs" th:text="${session.nickname}"><strong class="font-bold">用户昵称</strong>
+                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="profile.html" th:href="@{/toeditphoto}">修改头像 </a></li>
+                        <li><a href="contacts.html" th:href="@{/toeditpwd}">修改密码</a></li>
+                        <li><a href="contacts.html" th:href="@{http://www.atguigu.com/}">尚硅谷官网</a></li>
+                        <li><a href="mailbox.html" th:href="@{https://www.bjsxt.com/}">尚学堂官网</a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html" th:href="@{/logout}">退出</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li class="active">
+                <a href="index.html" th:href="@{/articles}"><i class="fa fa-th-large"></i> <span class="nav-label">博文管理</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="index.html" th:href="@{/articles}">博文列表</a></li>
+                    <li><a href="dashboard_5.html" th:href="@{/article}">发表博文<span class="label label-primary pull-right">NEW</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="" th:href="@{/roles}"><i class="fa fa-diamond"></i> <span class="nav-label">角色管理</span></a>
+            </li>
+            <li>
+                <a href=""><i class="fa fa-picture-o"></i> <span class="nav-label">分类/标签管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="" th:href="@{/categories}">分类管理</a></li>
+                    <li><a href="" th:href="@{/tags}">标签管理</a></li>
+                </ul>
+            </li>
+            <!--<li>
+                <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">分类管理</span></a>
+            </li>-->
+            <li>
+                <a href="index.html#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="graph_flot.html">前台门户网站用户</a></li>
+                    <li><a href="">后台管理系统用户</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href=""><i class="fa fa-flask"></i> <span class="nav-label">监控管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="http://localhost:8080/druid" th:href="@{/druid}" target="_blank">Druid数据源监控</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href=""><i class="fa fa-envelope"></i> <span class="nav-label">电子邮件 </span><span class="label label-warning pull-right">16/24</span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="">邮件1</a></li>
+                    <li><a href="">邮件2</a></li>
+                    <li><a href="">邮件3</a></li>
+                    <li><a href="">邮件4</a></li>
+                </ul>
+            </li>
+            <!--<li>
+                <a href="metrics.html" th:href="@{/app}"><i class="fa fa-pie-chart"></i> <span class="nav-label">To六星之旅</span>  </a>
+            </li>-->
+            <li>
+                <a href=""><i class="fa fa-desktop"></i> <span class="nav-label">系统管理</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                    <li><a href="">5</a></li>
+                    <li><a href="">6</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href=""><i class="fa fa-sitemap"></i> <span class="nav-label">一级菜单</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="">二级菜单 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="">三级菜单</a>
+                            </li>
+                            <li>
+                                <a href="">三级菜单</a>
+                            </li>
+                            <li>
+                                <a href="">三级菜单</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="">二级菜单</a></li>
+                    <li>
+                        <a href="">二级菜单</a></li>
+                    <li>
+                        <a href="">二级菜单</a></li>
+                </ul>
+            </li>
+
+            <li class="special_link">
+                <a href="package.html" th:href="@{http://www.baidu.com}"><i class="fa fa-database"></i> <span class="nav-label">码神之家前台门户网站To</span></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+
+
+<!--顶部栏topbar-->
+<div class="row border-bottom" id="topbar">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html" th:action="@{https://www.baidu.com/}">
+                <div class="form-group">
+                    <input type="text" placeholder="百度一下你就知道" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message">Welcome to sixstar</span>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="index.html#">
+                    <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/a7.jpg">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right">46h ago</small>
+                                <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/a4.jpg">
+                            </a>
+                            <div class="media-body ">
+                                <small class="pull-right text-navy">5h ago</small>
+                                <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="dropdown-messages-box">
+                            <a href="profile.html" class="pull-left">
+                                <img alt="image" class="img-circle" src="img/profile.jpg">
+                            </a>
+                            <div class="media-body ">
+                                <small class="pull-right">23h ago</small>
+                                <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a href="mailbox.html">
+                                <i class="fa fa-envelope"></i> <strong>读所有的信息</strong>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="index.html#">
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="mailbox.html">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="profile.html">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="grid_options.html">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a href="notifications.html">
+                                <strong>查找所有Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="login.html" th:href="@{/logout}">
+                    <i class="fa fa-sign-out"></i> 退出
+                </a>
+                <!--<form th:action="@{/logout}" method="post" class="fa fa-sign-out">-->
+                    <!--<input type="submit" value="注销" class="fa fa-sign-out"/>-->
+                <!--</form>-->
+            </li>
+            <li>
+                <a class="right-sidebar-toggle">
+                    <i class="fa fa-tasks"></i>
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+
+
+
+<!--底部栏footbar-->
+<div class="footer" id="footbar">
+    <div class="pull-right">
+        10GB of <strong>250GB</strong> Free.
+    </div>
+    <div>
+        <strong>Copyright</strong> 六星科技有限公司 &copy; 2019
+    </div>
+</div>
+
+
+</body>
+</html>

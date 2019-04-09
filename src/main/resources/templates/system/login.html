@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login Page</title>
+
+    <link th:href="@{/system/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet" />
+    <link th:href="@{/system/font-awesome/css/font-awesome.css}" href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <link th:href="@{/system/css/animate.css}" href="css/animate.css" rel="stylesheet" />
+    <link th:href="@{/system/css/style.css}" href="css/style.css" rel="stylesheet" />
+
+
+    <!--点击图片切换登录验证码！-->
+    <script type="text/javascript">
+
+        //切换验证码！
+        function refresh() {
+            document.getElementById('captcha_img').src="/generateKaptcha?"+Math.random();
+        }
+
+    </script>
+
+</head>
+
+<body class="gray-bg" th:background="@{/bootstrap/image/img002.jpg}">
+
+    <div class="loginColumns animated fadeInDown">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2 class="font-bold">欢迎来到六星后台管理系统！</h2>
+                <!--<p>
+                </p>
+
+                <p>
+                </p>
+
+                <p>
+                </p>
+
+                <p>
+                </p>-->
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="ibox-content">
+
+                    <h1 class="font-bold">请登陆</h1>
+
+                    <form class="m-t" role="form" action="index.html" th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input type="text" name="nickname" class="form-control" placeholder="Nickname" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="verifyCodeActual" class="form-control" placeholder="请输入验证码" required="">
+                        </div>
+                        <div class="form-group-lg">
+                            <img id="captcha_img" alt="点击更换" title="点击更换"
+                                onclick="refresh()" src="/kaptcha" th:src="@{/generateKaptcha}"/>
+                            <font color="red">验证码区分大小写</font>
+                        </div>
+                        <br><br>
+
+                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                        <a href="">
+                            <small>忘记密码？</small>
+                        </a>
+
+                        <p class="text-muted text-center">
+                            <small>还没有账号?</small>
+                        </p>
+                        <a class="btn btn-sm btn-white btn-block" href="register.html" th:href="@{/toregisterpage}">Create an account</a>
+
+                    </form>
+
+                    <p class="m-t">
+                        <small>项目框架基于Bootstrap 3.3.7 &copy;2018</small>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+        <hr/>
+
+
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <strong>Copyright</strong> 六星科技有限公司
+                <small>&copy;2019</small>
+            </div>
+
+            <div class="col-md-6 text-right">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
