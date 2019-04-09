@@ -4,6 +4,8 @@ import com.fuyao.newstarblog.beans.system.Article;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ArticleService {
 
     public Page<Article> list(Pageable pageable);
@@ -35,6 +37,9 @@ public interface ArticleService {
 
 //    批量删除
     public void delSelectedArticle(String[] ids);
+
+
+    public List<Article> list();
 
 
 }

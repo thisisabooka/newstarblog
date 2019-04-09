@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ArticleServiceImpl implements ArticleService {
@@ -116,6 +118,13 @@ public class ArticleServiceImpl implements ArticleService {
         }else{
             throw new RuntimeException("小星提示：发生未知错误，文章批量删除失败！");
         }
+    }
+
+
+//    不分页文章列表
+    @Override
+    public List<Article> list() {
+        return articleRepository.findAll();
     }
 
 
